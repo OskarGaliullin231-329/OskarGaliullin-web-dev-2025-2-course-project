@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename="styles/style.css") }}">
+{% endblock %}
+
+{% block header_content%}
+<div>
+    <img src="{{ url_for('static', filename='images/feather.png') }}" alt="application logo" id="app-logo">
+    <img src="{{ url_for('static', filename='images/no_ordinary_notes_name.png') }}" alt="styled application name" id="app-name">
+</div>
+<form>
+    <input type="text" name="note_search" placeholder="Search for your notes">
+    <button type="submit">Search</button>
+</form>
+<a href="https://github.com/OskarGaliullin231-329"><img src="{{ url_for('static', filename='images/github_logo.png') }}" alt="github logo" id="github-logo"></a>
+{% endblock %}
+
+{% block main_content %}
+<!--<div class="note_view">-->
+    <div id="notes-list-container">
+        {% block notes_list %}
+            {% if notes_arr %}
+                {% for note in notes_arr %}
+                <div>
+                    <a href="{#{ url_for('') }#}"><p>{{ note[0] }}</p></a>
+                </div>
+                {% endfor %}
+            {% else %}
+            <div><p>No notes yet...</p></div>
+            {% endif %}
+        {% endblock %}
+    </div>
+    <div id="note-container">
+        {% block note %}
+        <h2>Oops, no notes opened yet...</h2>
+        {#{ text|safe }#}
+        {% endblock %}
+    </div>
+<!--</div>-->
+{% endblock %}
+

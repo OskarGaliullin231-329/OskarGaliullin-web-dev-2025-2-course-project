@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.2rem;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px 0px 30px;
+}
+
+header #app-logo, #github-logo {
+    width: 60px;
+    height: 60px;
+}
+
+header #app-name {
+    width: 200px;
+    height: 60px;
+    margin: 0px 10px 0px 15px;
+    padding: 0px;
+}
+
+header input {
+    width: 350px;
+    height: 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(190, 190, 190);
+    border-radius: 10px;
+}
+
+header button {
+    width: 80px;
+    height: 34px;
+    border-style: solid;
+    border-color: rgb(160, 160, 160);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+header button:hover {
+    background-color: rgb(245, 230, 200);
+    border-color: rgb(195, 180, 150);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 0px;
+
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+}
+
+#notes-list-container,
+#note-container {
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    /* font-family: "Cardo", serif; */
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 0px;
+}

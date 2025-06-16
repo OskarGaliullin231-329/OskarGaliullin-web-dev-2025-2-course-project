@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+header {
+    display: flex;
+    /* grid-template-columns: 1fr 10fr 1fr; */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px 30px;
+}
+
+header #app-logo, #github-logo {
+    width: 60px;
+    height: 60px;
+}
+
+header #app-name {
+    width: 200px;
+    height: 60px;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form h1 {
+    margin: 0px 0px 20px 0px;
+}
+
+.auth-form input {
+    width: 500px;
+    height: 45px;
+    margin: 10px 0px 20px 0px;
+    padding: 0px;
+    border-style: solid;
+    border-color: rgb(190, 190, 190);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.auth-form .remember_me_checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.auth-form .remember_me_checkbox input {
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    margin: 0px 10px 0px 0px;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 0px;
+}
