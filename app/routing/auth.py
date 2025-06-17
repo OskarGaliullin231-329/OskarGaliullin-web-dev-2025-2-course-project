@@ -1,8 +1,9 @@
 from functools import wraps
 from flask import Blueprint, render_template, request, url_for, flash, redirect
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
-from app.repositories import UserRepository
+from collections import namedtuple
 
+from app.repositories import UserRepository
 from app.db_instance import db
 from .user import User
 import re
@@ -25,11 +26,34 @@ def load_user(user_UUID):
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
+    # CurrentUser = namedtuple('CurrentUser', [''])
+    print(current_user.id)
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('auth/login.html')
+    user_UUID = ''
+    if request.method == 'POST':
+        username = request.form['user_name']
+        password = request.form['user_pass']
+        remember_me = request.form.get('remember_me', None) == 'on'
+        
+        user = user_repo.get_by_username_and_password(username, password)
+        
+        if user:
+            flash('Authorization has gone successfully', 'success')
+            login_user(User(user), remember=remember_me)
+            user_UUID = user[0]
+            print(user_UUID)
+            return redirect(url_for('note_view.index', user_UUID = user_UUID))
+        
+        flash('Authorization failure. Wrong username or password.', 'danger')
+        
+    return render_template('auth/login.html', user_id='')
+
+@bp.route('/account_details/<string:user_UUID>', methods=['GET', 'POST'])
+def account_details(user_UUID):
+    return render_template('')
 
 @bp.route('/logout', methods=['GET', 'POST'])
 @login_required

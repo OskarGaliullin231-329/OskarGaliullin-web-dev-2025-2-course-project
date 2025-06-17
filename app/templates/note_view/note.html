@@ -29,14 +29,14 @@
                 </div>
                 {% endfor %}
             {% else %}
-            <div><p>No notes yet...</p></div>
+            <div><p>No notes yet...</p>
             {% endif %}
         {% endblock %}
     </div>
     <div id="note-container">
         {% block note %}
-        <h2>No notes are opened yet...</h2>
-        {#{ text|safe }#}
+        <h2 class="note-name-container">{{ name }}</h2>
+        <div class="note-text-container">{{ text|safe }}</div>
         {% endblock %}
     </div>
 <!--</div>-->

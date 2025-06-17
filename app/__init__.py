@@ -17,9 +17,9 @@ def create_app():
     from .routing import auth
     app.register_blueprint(auth.bp)
     auth.login_manager.init_app(app)
+    app.route('/', endpoint='login')(auth.login)
     
     from .routing import note_view
     app.register_blueprint(note_view.bp)
-    app.route('/', endpoint='index')(note_view.index)
     
     return app

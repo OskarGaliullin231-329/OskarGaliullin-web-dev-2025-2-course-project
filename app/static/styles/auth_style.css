@@ -72,6 +72,25 @@ main {
     margin: 0px 10px 0px 0px;
 }
 
+.auth-form button {
+    align-self: center;
+    width: 220px;
+    height: 34px;
+    border-style: solid;
+    border-color: rgb(160, 160, 160);
+    border-width: 2px;
+    border-radius: 10px;
+    margin: 20px 0px 20px 0px;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+    color: rgb(60, 60, 60);
+}
+
+.auth-form button:hover {
+    background-color: rgb(245, 230, 200);
+    border-color: rgb(195, 180, 150);
+}
+
 footer {
     background-color: black;
     color: white;

@@ -12,15 +12,15 @@
 
 {% block main_content %}
 <form class="auth-form">
-    <h1>Register</h1>
+    <h1>Change your account data</h1>
     <label for="user_name">Username</label>
-    <input type="text" name="user_name" placeholder="Type your username here">
+    <input type="text" name="user_name" placeholder="Type your new username here" value="{{  }}">
 
     <label for="user_name">Email</label>
-    <input type="text" name="user_name" placeholder="Type your email here">
+    <input type="text" name="user_name" placeholder="Type your new email here" value="{{  }}">
 
     <label for="user_name">Password</label>
-    <input type="password" name="user_pass" placeholder="Type your password here">
+    <input type="password" name="user_pass" placeholder="Type your new password here" value="{{  }}">
 
     <div class="remember_me_checkbox">
         <input type="checkbox" name="remember_me">
@@ -29,6 +29,4 @@
 
     <button type="submit">Submit</button>
 </form>
-
-<p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</a> then!</p>
 {% endblock %}
