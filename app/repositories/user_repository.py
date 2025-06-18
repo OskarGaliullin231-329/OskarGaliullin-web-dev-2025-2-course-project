@@ -26,7 +26,7 @@ class UserRepository:
         connection = self.db_connector.connect()
         with connection.cursor() as cursor:
             query = '''
-                insert into users (UUID, user_name, user_email, user_pass_hash)
+                insert into users (user_UUID, user_name, user_email, user_pass_hash)
                 values (UUID(), %s, %s, sha2(%s, 256))
             '''
             user_data = (user_name, email, password)

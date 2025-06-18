@@ -100,17 +100,43 @@ main {
 }
 
 #notes-list-container .notes-list-member {
-    background-color: rgb(250, 250, 250);
+    background-color: white;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(240, 240, 200);
+    border-color: white;
     border-radius: 6px;
     margin: 10px;
     padding: 7px;
-    color: black;
+}
+
+#notes-list-container .notes-list-member p {
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: black;
+}
+
+#new-note-btn {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 7px;
+}
+
+#new-note-btn:hover {
+    background-color: rgb(210, 240, 255);
+    border-color: rgb(190, 210, 230);
+}
+
+#new-note-btn p {
+    margin: 0px;
+    padding: 0px;
+    color: rgb(60, 60, 60);
 }
 
 #notes-list-container .notes-list-member:hover {
@@ -119,12 +145,60 @@ main {
 }
 
 #note-container {
+    display: flex;
+    flex-direction: column;
     padding: 20px 20px 20px 15px;
 }
 
 #note-container .note-name-container {
     margin: 0px;
     padding: 0px;
+}
+
+#note-container .note-container-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#note-container .note-container-header button {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    padding: 2px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#note-container .note-container-header button:hover {
+    background-color: rgb(245, 230, 200);
+    border-color: rgb(195, 180, 150);
+}
+
+#note-container .note-container-header button img {
+    height: 42px;
+    width: 42px;
+    object-fit: contain;
+}
+
+#note-container .note-name-input {
+    width: 85%;
+    font: inherit;
+    font-size: 1.7rem;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+
+#note-container .note-text-input {
+    font: inherit;
+    margin: 0px;
+    padding: 10px;
+    resize: none;
+    height: 100%;
+    width: 98%;
 }
 
 footer {

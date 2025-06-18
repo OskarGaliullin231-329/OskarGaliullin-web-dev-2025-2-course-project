@@ -1,10 +1,13 @@
 # import os
 
-from flask import Flask
+from flask import Flask, session
+from flask_session import Session
 from .db_instance import db
+
 
 def create_app():
     app = Flask(__name__, instance_relative_config=False)
+    
     app.config.from_pyfile('config.py')
     
     db.init_app(app)
@@ -21,5 +24,7 @@ def create_app():
     
     from .routing import note_view
     app.register_blueprint(note_view.bp)
+    
+    Session(app)
     
     return app

@@ -29,7 +29,7 @@
         </div>
         {% if notes_arr %}
             {% for note in notes_arr %}
-            <div class="notes-list-member">
+            <div class="notes-list-member"  >
                 <a href="{{ url_for('note_view.note_view', user_UUID=user_id, note_UUID=note[1]) }}">
                     <p>{{ note[0] }}</p>
                 </a>
@@ -40,18 +40,20 @@
         {% endif %}
     {% endblock %}
 </div>
-<div id="note-container">
+<form id="note-container" action="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}" method="POST">
     {% block note %}
+    <!--<h2 class="note-name-container">{{ name }}</h2>-->
     <div class="note-container-header">
-        <h2 class="note-name-container">{{ name }}</h2>
-        <a href="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}">
-            <button type="button"><img src="{{ url_for('static', filename='images/pen.png') }}"></button>
-        </a>
+        <input type="text" name="note-name" value="{{ name }}" class="note-name-input">
+        <div class="btn-container">
+            <button type="submit"><img src="{{ url_for('static', filename='images/floppy-disk.png') }}"></button>
+            <a href="{{ url_for('note_view.note_view', user_UUID=user_id, note_UUID=note_id) }}">
+                <button type="button"><img src="{{ url_for('static', filename='images/eye.png') }}"></button>
+            </a>
+        </div>
     </div>
-    <div class="note-text-container">
-        {{ text|safe }}
-    </div>
+    <textarea name="note-text" class="note-text-input">{{ text|safe }}</textarea>
     {% endblock %}
-</div>
+</form>
 {% endif %}
 {% endblock %}

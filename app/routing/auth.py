@@ -1,7 +1,8 @@
 from functools import wraps
-from flask import Blueprint, render_template, request, url_for, flash, redirect
+from flask import Blueprint, render_template, request, url_for, flash, redirect, session
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
-from collections import namedtuple
+# from collections import namedtuple
+import mysql.connector as connector
 
 from app.repositories import UserRepository
 from app.db_instance import db
@@ -26,13 +27,32 @@ def load_user(user_UUID):
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    # CurrentUser = namedtuple('CurrentUser', [''])
-    print(current_user.id)
+    if request.method == 'POST':
+        user_email = request.form['user_email']
+        username = request.form['user_name']
+        password = request.form['user_pass']
+        remember_me = request.form.get('remember_me', None) == 'on'
+        
+        existing_user = user_repo.get_by_username_and_password(username, password)
+        user_UUID = ''
+        if existing_user:
+            user_UUID = existing_user[0]
+            flash('Registration failure. User already exists.', 'danger')
+            return redirect(url_for('auth.register', user_UUID=user_UUID))
+        
+        existing_user = user_repo.get_by_username_and_password(user_email, password)
+        user_UUID = ''
+        if existing_user:
+            user_UUID = existing_user[0]
+            flash('Registration failure. User already exists.', 'danger')
+            return redirect(url_for('auth.register', user_UUID=user_UUID))
+
+        user_repo.create_user(username, password, user_email)
+
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    user_UUID = ''
     if request.method == 'POST':
         username = request.form['user_name']
         password = request.form['user_pass']
@@ -43,20 +63,19 @@ def login():
         if user:
             flash('Authorization has gone successfully', 'success')
             login_user(User(user), remember=remember_me)
-            user_UUID = user[0]
-            print(user_UUID)
-            return redirect(url_for('note_view.index', user_UUID = user_UUID))
+            session['user_UUID'] = user[0]
+            return redirect(url_for('note_view.index', user_UUID=session['user_UUID']))
         
         flash('Authorization failure. Wrong username or password.', 'danger')
         
-    return render_template('auth/login.html', user_id='')
+    return render_template('auth/login.html')
 
 @bp.route('/account_details/<string:user_UUID>', methods=['GET', 'POST'])
 def account_details(user_UUID):
-    return render_template('')
+    return render_template('auth/account_details.html')
 
 @bp.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
-    redirect(url_for('login'))
+    redirect(url_for('auth.login'))

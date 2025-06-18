@@ -17,14 +17,19 @@
 {% endblock %}
 
 {% block main_content %}
-<!--<div class="note_view">-->
+{% if current_user.is_authenticated %}
     <div id="notes-list-container">
         {% block notes_list %}
+            <div id="new-note-btn">
+                <a href="{{ url_for('note_view.new_note', user_UUID=user_id) }}">
+                    <p>+ Add note</p>
+                </a>
+            </div>
             {% if notes_arr %}
                 {% for note in notes_arr %}
-                <div>
-                    <a href="{{ url_for('note_view.note_view', user_UUID='9c4de172-4a4b-11f0-9092-44fa6636f0a3', note_UUID=note[1]) }}">
-                        <p class="notes-list-member">{{ note[0] }}</p>
+                <div class="notes-list-member">
+                    <a href="{{ url_for('note_view.note_view', user_UUID=user_id, note_UUID=note[1]) }}">
+                        <p>{{ note[0] }}</p>
                     </a>
                 </div>
                 {% endfor %}
@@ -39,5 +44,5 @@
         {#{ text|safe }#}
         {% endblock %}
     </div>
-<!--</div>-->
+{% endif %}
 {% endblock %}

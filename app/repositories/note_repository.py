@@ -16,9 +16,9 @@ class NoteRepository:
         connection = self.db_connector.connect()
         with connection.cursor() as cursor:
             query = '''
-                    insert into notes (note_UUID, note_name, note_text, user_UUID) 
-                    values
-                    (UUID(), %s, %s, %s)
+                        insert into notes (note_UUID, note_name, note_text, user_UUID) 
+                        values
+                        (UUID(), %s, %s, %s)
                     '''
             note_data = (note_name, note_text, user_UUID)
             cursor.execute(query, note_data)
@@ -28,10 +28,10 @@ class NoteRepository:
         connection = self.db_connector.connect()
         with connection.cursor() as cursor:
             query = '''
-                    update notes
-                    set note_name = %s,
-                        note_text = %s,
-                    where note_UUID = %s;
+                        update notes
+                        set note_name = %s,
+                            note_text = %s
+                        where note_UUID = %s;
                     '''
             note_data = (note_name, note_text, note_UUID)
             cursor.execute(query, note_data)
@@ -41,8 +41,8 @@ class NoteRepository:
         connection = self.db_connector.connect()
         with connection.cursor() as cursor:
             query = '''
-                    delete from notes
-                    where note_UUID = %s;
+                        delete from notes
+                        where note_UUID = %s;
                     '''
             cursor.execute(query, note_UUID)
             connection.commit()

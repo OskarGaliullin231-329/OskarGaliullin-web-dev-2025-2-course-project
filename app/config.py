@@ -4,6 +4,8 @@ MYSQL_HOST='127.0.0.1'
 MYSQL_DATABASE='CP_test_db'
 MYSQL_USER='CP_flask_app'
 MYSQL_PASSWORD='qwerty'
+SESSION_PERMANENT=False
+SESSION_TYPE='filesystem'
 
 # # prod config
 # SECRET_KEY=''
@@ -11,3 +13,5 @@ MYSQL_PASSWORD='qwerty'
 # MYSQL_DATABASE=''
 # MYSQL_USER=''
 # MYSQL_PASSWORD=''
+# SESSION_PERMANENT=False
+# SESSION_TYPE='filesystem
