@@ -40,15 +40,12 @@
         {% endif %}
         {% endblock %}
     </div>
-    <form id="note-container" action="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}" method="POST">
+    <form id="note-container" action="{{ url_for('note_view.new_note', user_UUID=user_id) }}" method="POST">
         {% block note %}
         <div class="note-container-header">
-            <input type="text" name="note-name" class="note-name-input" placeholder="Note name">
+            <input type="text" name="note-name" class="note-name-input" placeholder="Note name" required>
             <div class="btn-container">
                 <button type="submit"><img src="{{ url_for('static', filename='images/floppy-disk.png') }}"></button>
-                <a href="{{ url_for('note_view.note_view', user_UUID=user_id, note_UUID=note_id) }}">
-                    <button type="button"><img src="{{ url_for('static', filename='images/eye.png') }}"></button>
-                </a>
             </div>
         </div>
         <textarea name="note-text" class="note-text-input" placeholder="Note text"></textarea>

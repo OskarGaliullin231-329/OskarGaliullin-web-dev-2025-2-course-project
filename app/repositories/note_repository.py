@@ -44,5 +44,5 @@ class NoteRepository:
                         delete from notes
                         where note_UUID = %s;
                     '''
-            cursor.execute(query, note_UUID)
+            cursor.execute(query, (note_UUID, ))
             connection.commit()

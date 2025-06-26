@@ -71,8 +71,25 @@ def login():
     return render_template('auth/login.html')
 
 @bp.route('/account_details/<string:user_UUID>', methods=['GET', 'POST'])
+@login_required
 def account_details(user_UUID):
-    return render_template('auth/account_details.html')
+    user = user_repo.get_by_UUID(user_UUID)
+    if request.method == 'POST':
+        user_name = request.form['user-name']
+        user_email = request.form['user-email']
+        user_pass = request.form['user-pass']
+        if not user_pass:
+            user_repo.update_user_NE(user_UUID, user_name, user_email)
+        user_repo.update_user(user_UUID, user_name, user_pass, user_email)
+        # return redirect(url_for('note_view.index', user_UUID=user_UUID))
+        print(request.form)
+
+    return render_template(
+        'auth/account_details.html',
+        username=user[1],
+        user_email=user[2],
+        user_id = user_UUID
+        )
 
 @bp.route('/logout', methods=['GET', 'POST'])
 @login_required

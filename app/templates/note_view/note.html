@@ -43,7 +43,7 @@
 <div id="note-container">
     {% block note %}
     <div class="note-container-header">
-        <h2 class="note-name-container">{{ name }}</h2>
+        <h1 class="note-name-container">{{ name }}</h1>
         <a href="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}">
             <button type="button"><img src="{{ url_for('static', filename='images/pen.png') }}"></button>
         </a>

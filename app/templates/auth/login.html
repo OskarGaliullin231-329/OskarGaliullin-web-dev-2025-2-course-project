@@ -14,10 +14,10 @@
 <form class="auth-form" action="{{ url_for('auth.login') }}" method="POST">
     <h1>Login</h1>
     <label for="user_name">Username or Email</label>
-    <input type="text" name="user_name" placeholder="Your username or email">
+    <input type="text" name="user_name" placeholder="Your username or email" required>
 
     <label for="user_pass">Password</label>
-    <input type="password" name="user_pass" placeholder="Your password">
+    <input type="password" name="user_pass" placeholder="Your password" required>
 
     <div class="remember_me_checkbox">
         <input type="checkbox" name="remember_me">

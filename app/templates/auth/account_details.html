@@ -5,22 +5,26 @@
 {% endblock %}
 
     {% block header_content %}
-    <img src="{{ url_for('static', filename='images/feather.png') }}" alt="application logo" id="app-logo">
+    <a href="{{ url_for('note_view.index', user_UUID=user_id) }}">
+        <img src="{{ url_for('static', filename='images/feather.png') }}" alt="application logo" id="app-logo">
+    </a>
     <img src="{{ url_for('static', filename='images/no_ordinary_notes_name.png') }}" alt="styled application name" id="app-name">
-    <a href="https://github.com/OskarGaliullin231-329"><img src="{{ url_for('static', filename='images/github_logo.png') }}" alt="github logo" id="github-logo"></a>
+    <a href="https://github.com/OskarGaliullin231-329">
+        <img src="{{ url_for('static', filename='images/github_logo.png') }}" alt="github logo" id="github-logo">
+    </a>
 {% endblock %}
 
 {% block main_content %}
-<form class="auth-form">
+<form class="auth-form" action="{{ url_for('auth.account_details', user_UUID=user_id) }}" method="POST">
     <h1>Change your account data</h1>
     <label for="user_name">Username</label>
-    <input type="text" name="user_name" placeholder="Type your new username here" value="{{  }}">
+    <input type="text" name="user-name" placeholder="Type your new username here" value="{{ username }}">
 
     <label for="user_name">Email</label>
-    <input type="text" name="user_name" placeholder="Type your new email here" value="{{  }}">
+    <input type="text" name="user-email" placeholder="Type your new email here" value="{{ user_email }}">
 
     <label for="user_name">Password</label>
-    <input type="password" name="user_pass" placeholder="Type your new password here" value="{{  }}">
+    <input type="password" name="user-pass" placeholder="Type your new password here">
 
     <div class="remember_me_checkbox">
         <input type="checkbox" name="remember_me">

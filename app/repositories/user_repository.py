@@ -46,6 +46,45 @@ class UserRepository:
             user_data = (user_name, email, password, user_UUID)
             cursor.execute(query, user_data)
             connection.commit()
+        
+    def update_user_PE(self, user_UUID, password, email):
+        connection = self.db_connector.connect()
+        with connection.cursor() as cursor:
+            query = '''
+                update users 
+                set user_email = %s,
+                    user_pass_hash = sha2(%s, 256)
+                where user_UUID = %s;
+            '''
+            user_data = (email, password, user_UUID)
+            cursor.execute(query, user_data)
+            connection.commit()
+    
+    def update_user_NE(self, user_UUID, user_name, email):
+        connection = self.db_connector.connect()
+        with connection.cursor() as cursor:
+            query = '''
+                update users 
+                set user_name = %s,
+                    user_email = %s
+                where user_UUID = %s;
+            '''
+            user_data = (user_name, email, user_UUID)
+            cursor.execute(query, user_data)
+            connection.commit()
+    
+    def update_user_NP(self, user_UUID, user_name, password):
+        connection = self.db_connector.connect()
+        with connection.cursor() as cursor:
+            query = '''
+                update users 
+                set user_name = %s,
+                    user_pass_hash = sha2(%s, 256)
+                where user_UUID = %s;
+            '''
+            user_data = (user_name, password, user_UUID)
+            cursor.execute(query, user_data)
+            connection.commit()
 
     def delete_user(self, user_UUID):
         connection = self.db_connector.connect()

@@ -13,11 +13,13 @@
     <input type="text" name="note_search" placeholder="Search for your notes">
     <button type="submit">Search</button>
 </form>
-<a href="https://github.com/OskarGaliullin231-329"><img src="{{ url_for('static', filename='images/github_logo.png') }}" alt="github logo" id="github-logo"></a>
+<a href="{{ url_for('auth.account_details', user_UUID=user_id) }}">
+    <img src="{{ url_for('static', filename='images/person.png') }}" alt="account details" id="github-logo">
+</a>
 {% endblock %}
 
 {% block main_content %}
-{% if current_user.is_authenticated %}
+    {% if current_user.is_authenticated %}
     <div id="notes-list-container">
         {% block notes_list %}
             <div id="new-note-btn">
@@ -44,5 +46,5 @@
         {#{ text|safe }#}
         {% endblock %}
     </div>
-{% endif %}
+    {% endif %}
 {% endblock %}

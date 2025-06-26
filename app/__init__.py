@@ -2,6 +2,7 @@
 
 from flask import Flask, session
 from flask_session import Session
+
 from .db_instance import db
 
 

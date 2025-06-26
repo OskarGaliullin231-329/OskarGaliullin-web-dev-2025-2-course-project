@@ -147,11 +147,7 @@ main {
 #note-container {
     display: flex;
     flex-direction: column;
-    padding: 20px 20px 20px 15px;
-}
-
-#note-container .note-name-container {
-    margin: 0px;
+    /* padding: 20px 20px 20px 15px; */
     padding: 0px;
 }
 
@@ -159,6 +155,17 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 100;
+    margin: 0px;
+    padding: 0px;
+}
+
+#note-container .note-name-container {
+    margin: 0px;
+    padding: 20px 20px 15px 15px;
 }
 
 #note-container .note-container-header button {
@@ -171,6 +178,7 @@ main {
     border-color: transparent;
     border-radius: 10px;
     background-color: transparent;
+    margin: 5px;
 }
 
 #note-container .note-container-header button:hover {
@@ -181,24 +189,84 @@ main {
 #note-container .note-container-header button img {
     height: 42px;
     width: 42px;
-    object-fit: contain;
+    object-fit: contain; 
 }
 
 #note-container .note-name-input {
     width: 85%;
     font: inherit;
-    font-size: 1.7rem;
+    font-size: 2.3rem;
     font-weight: bold;
     overflow-wrap: break-word;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    border-bottom-right-radius: 15px;
+}
+
+#note-container .note-text-container {
+    word-break: break-all;
+    padding: 10px 20px 15px 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(220, 160, 160);
+    border-radius: 15px;
+    margin: 7px;
 }
 
 #note-container .note-text-input {
-    font: inherit;
+    font-family: "Space Mono", monospace;
+    font-size: 1.1rem;
     margin: 0px;
     padding: 10px;
     resize: none;
     height: 100%;
-    width: 98%;
+    width: 97%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(220, 160, 160);
+    border-radius: 15px;
+    margin: 7px;
+}
+
+#del-mes {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(220, 160, 160);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    z-index: 100;
+}
+
+#del-mes .btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#del-mes .btn-container button {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.2rem;
+    width: 50%;
+    height: 30px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(160, 160, 160);
+    border-radius: 10px;
+    color: rgb(60, 60, 60);
+}
+
+#del-mes .btn-container button:hover {
+    background-color: rgb(245, 230, 200);
+    border-color: rgb(195, 180, 150);
 }
 
 footer {

@@ -10,9 +10,9 @@ class FileRepository:
     def add_file(self, file_name, note_UUID):
         with self.db_connector.connect().cursor() as cursor:
             cursor.execute('''
-                           insert into note_files (file_UUID_name, file_name, note_UUID)
-                           values (concat(%s, %s), %s, %s)
-                           ''', (note_UUID, file_name, file_name, note_UUID))
+                           insert into note_files (file_name, note_UUID)
+                           values (%s, %s);
+                           ''', (file_name, note_UUID))
 
     def delete_file(self, note_UUID ,file_name):
         connection = self.db_connector.connect()
