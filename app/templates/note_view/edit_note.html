@@ -40,7 +40,7 @@
         {% endif %}
     {% endblock %}
 </div>
-<form id="note-container" action="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}" method="POST">
+<form id="note-container" action="{{ url_for('note_view.edit_note', user_UUID=user_id, note_UUID=note_id) }}" method="POST" enctype="multipart/form-data">
     {% block note %}
     <div class="note-container-header">
         <input type="text" name="note-name" value="{{ name }}" class="note-name-input" required>
@@ -53,6 +53,33 @@
         </div>
     </div>
     <textarea name="note-text" class="note-text-input">{{ text|safe }}</textarea>
+    
+    <!-- File upload section -->
+    <div class="file-upload-section">
+        <label for="files" class="file-upload-label">Attach files:</label>
+        <input type="file" name="files" id="files" multiple accept=".txt,.pdf,.png,.jpg,.jpeg,.gif,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar">
+        <div id="file-list" class="file-list"></div>
+    </div>
+    
+    <!-- Existing files section -->
+    {% if files %}
+    <div class="existing-files-section">
+        <h4>Attached files:</h4>
+        <div class="files-list">
+            {% for file in files %}
+            <div class="file-item">
+                <a href="{{ url_for('note_view.download_file', filename=file[0]) }}" class="file-link">
+                    {{ file[0] }}
+                </a>
+                <a href="{{ url_for('note_view.delete_file', user_UUID=user_id, note_UUID=note_id, filename=file[0]) }}" 
+                   class="delete-file-btn" onclick="return confirm('Are you sure you want to delete this file?')">
+                    <img src="{{ url_for('static', filename='images/trash_bin.png') }}" alt="Delete" class="delete-icon">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
     {% endblock %}
 </form>
 

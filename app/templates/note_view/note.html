@@ -51,6 +51,22 @@
     <div class="note-text-container">
         {{ text|safe }}
     </div>
+    
+    <!-- Attached files section -->
+    {% if files %}
+    <div class="attached-files-section">
+        <h4>Attached files:</h4>
+        <div class="files-list">
+            {% for file in files %}
+            <div class="file-item">
+                <a href="{{ url_for('note_view.download_file', filename=file[0]) }}" class="file-link">
+                    {{ file[0] }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
     {% endblock %}
 </div>
 {% endif %}

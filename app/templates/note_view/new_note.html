@@ -40,7 +40,7 @@
         {% endif %}
         {% endblock %}
     </div>
-    <form id="note-container" action="{{ url_for('note_view.new_note', user_UUID=user_id) }}" method="POST">
+    <form id="note-container" action="{{ url_for('note_view.new_note', user_UUID=user_id) }}" method="POST" enctype="multipart/form-data">
         {% block note %}
         <div class="note-container-header">
             <input type="text" name="note-name" class="note-name-input" placeholder="Note name" required>
@@ -49,6 +49,11 @@
             </div>
         </div>
         <textarea name="note-text" class="note-text-input" placeholder="Note text"></textarea>
+        <div class="file-upload-section">
+            <label for="files" class="file-upload-label">Attach files:</label>
+            <input type="file" name="files" id="files" multiple accept=".txt,.pdf,.png,.jpg,.jpeg,.gif,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar">
+            <div id="file-list" class="file-list"></div>
+        </div>
         {% endblock %}
     </form>
 {% endif %}
